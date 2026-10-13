@@ -389,7 +389,7 @@ Common Issues Tip: If you encounter issues, Refer to [FAQs](../../faqs.md).
     --enable-prefix-caching \
     --async-scheduling \
     --kv-cache-dtype int8 \
-    --attention_config.indexer_kv_dtype int8 \
+    --attention_config.indexer_kv_dtype auto \
     --additional-config '{"enable_balance_scheduling": true, "ascend_compilation_config": {"fuse_muls_add": true}, "enable_flashcomm1": true, "enable_fused_mc2": true, "enable_mlapo": true}' \
     --compilation-config '{"cudagraph_mode": "FULL_DECODE_ONLY"}' \
     --speculative-config '{"num_speculative_tokens": 3, "method": "deepseek_mtp","enforce_eager":true}'
@@ -437,7 +437,7 @@ Common Issues Tip: If you encounter issues, Refer to [FAQs](../../faqs.md).
     --enable-prefix-caching \
     --async-scheduling \
     --kv-cache-dtype int8 \
-    --attention_config.indexer_kv_dtype int8 \
+    --attention_config.indexer_kv_dtype auto \
     --additional-config '{"enable_balance_scheduling": true, "ascend_compilation_config": {"fuse_muls_add": true}, "enable_flashcomm1": true, "enable_fused_mc2": true, "enable_mlapo": true}' \
     --compilation-config '{"cudagraph_mode": "FULL_DECODE_ONLY"}' \
     --speculative-config '{"num_speculative_tokens": 3, "method": "deepseek_mtp","enforce_eager":true}'
@@ -1094,7 +1094,7 @@ if __name__ == "__main__":
             --served-model-name glm-5.1 \
             --max-model-len 202752 \
             --kv-cache-dtype int8 \
-            --attention_config.indexer_kv_dtype int8 \
+            --attention_config.indexer_kv_dtype auto \
             --additional-config '{"ascend_compilation_config": {"fuse_muls_add": true}, "recompute_scheduler_enable": false, "multistream_overlap_shared_expert": true, "enable_flashcomm1": true, "enable_fused_mc2": true}' \
             --max-num-batched-tokens 16384 \
             --trust-remote-code \
@@ -1156,7 +1156,7 @@ if __name__ == "__main__":
             --served-model-name glm-5.1 \
             --max-model-len 202752 \
             --kv-cache-dtype int8 \
-            --attention_config.indexer_kv_dtype int8 \
+            --attention_config.indexer_kv_dtype auto \
             --additional-config '{"ascend_compilation_config": {"fuse_muls_add": true}, "recompute_scheduler_enable": false, "multistream_overlap_shared_expert": true, "enable_flashcomm1": true, "enable_fused_mc2": true}' \
             --max-num-batched-tokens 16384 \
             --trust-remote-code \
@@ -1215,7 +1215,7 @@ if __name__ == "__main__":
             --max-model-len 202752 \
             --max-num-batched-tokens 164 \
             --kv-cache-dtype int8 \
-            --attention_config.indexer_kv_dtype int8 \
+            --attention_config.indexer_kv_dtype auto \
             --compilation-config '{"cudagraph_mode":"FULL_DECODE_ONLY"}' \
             --additional-config '{"ascend_compilation_config": {"fuse_muls_add": true}, "recompute_scheduler_enable": true, "multistream_overlap_shared_expert": true, "enable_fused_mc2": true, "enable_mlapo": true}' \
             --trust-remote-code \
@@ -1273,7 +1273,7 @@ if __name__ == "__main__":
             --max-model-len 202752 \
             --max-num-batched-tokens 164 \
             --kv-cache-dtype int8 \
-            --attention_config.indexer_kv_dtype int8 \
+            --attention_config.indexer_kv_dtype auto \
             --compilation-config '{"cudagraph_mode":"FULL_DECODE_ONLY"}' \
             --additional-config '{"ascend_compilation_config": {"fuse_muls_add": true}, "recompute_scheduler_enable": true, "multistream_overlap_shared_expert": true, "enable_fused_mc2": true, "enable_mlapo": true}' \
             --trust-remote-code \
@@ -1517,7 +1517,7 @@ The following optimizations must be explicitly enabled to take effect. They appl
 |PCP|A3 prefill nodes; long context (≥128K)|`--prefill-context-parallel-size`|PCP accelerates long-context prefill, reducing TTFT for long prompts|In the reference configs, enabled on co-located nodes and PD prefill nodes|
 |Balance Scheduling|A3 single-node / co-located / non-PD scenarios|`--additional-config '{"enable_balance_scheduling": true}'`|Improves output throughput and reduces TPOT in the v1 scheduler|TTFT may degrade; not recommended when Prefill-Decode is separated|
 |Sparse SFA C8|A3 (w8a8c8); long-context prefill|`--additional-config '{"enable_sparse_sfa_c8": true}'`|Sparse Flash Attention skips unnecessary attention computation of the C8 quantized model, accelerating long-context prefill|Experimental in v0.23.0. In the reference configs, enabled in the high-throughput and PD scenarios; disabled in the low-latency scenario|
-|Sparse LI C8|A3 (w8a8c8)|`--attention_config.indexer_kv_dtype int8`|Sparse attention optimization reduces computation of the C8 quantized model, improving throughput|Independent of `enable_sparse_sfa_c8`; the reference low-latency config disables both|
+|Sparse LI C8|A3 (w8a8c8)|`--attention_config.indexer_kv_dtype auto`|Sparse attention optimization reduces computation of the C8 quantized model, improving throughput|Independent of `enable_sparse_sfa_c8`; the reference low-latency config disables both|
 |Recompute Scheduler|A3 decode nodes|`--additional-config '{"recompute_scheduler_enable": true}'`|Recomputes KV cache on prefill nodes when decode KV cache is insufficient, avoiding decode-side OOM and improving throughput|Set to `false` on prefill nodes|
 |Multistream Overlap Shared Expert|A3|`--additional-config '{"multistream_overlap_shared_expert": true}'`|Overlaps shared-expert computation on an additional stream, hiding its latency and improving decode performance|Auto-disabled when `"enable_fused_mc2": true`|
 

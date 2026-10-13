@@ -208,7 +208,7 @@ operators to run sparse Decode offload; the presence of Python source alone
 is not sufficient.
 
 LIM C8 uses `npu_fused_quant_lightning_indexer_manage`, which is included on
-this branch. Enable it with `--attention_config.indexer_kv_dtype int8`. The
+this branch. Enable it with `--attention_config.indexer_kv_dtype auto`. The
 indexer then Hadamard-rotates and int8-quantizes query and key, and
 `_lim_select` forwards that int8 query and the fp16 dequant scales to the C8
 LIM. The 19-parameter management ABI matches BF16 LIM, so Copy-SFA and miss H2D

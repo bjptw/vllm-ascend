@@ -328,7 +328,7 @@ variable in the selected script. Use the same checkpoint path on all nodes.
       --quantization ascend \
       --compilation-config '{"cudagraph_mode": "FULL_DECODE_ONLY"}' \
       --kv-cache-dtype int8 \
-      --attention_config.indexer_kv_dtype int8 \
+      --attention_config.indexer_kv_dtype auto \
       --additional-config '{"enable_dsa_cp": true, "enable_balance_scheduling": true, "multistream_overlap_shared_expert": true, "enable_flashcomm1": true}' \
       --speculative-config '{"num_speculative_tokens": 3, "method": "deepseek_mtp", "enforce_eager": true}'
     ```
@@ -628,7 +628,7 @@ If you want to deploy a multi-node environment, first verify the data-plane netw
         --async-scheduling \
         --compilation-config '{"cudagraph_mode": "FULL_DECODE_ONLY"}' \
         --kv-cache-dtype int8 \
-        --attention_config.indexer_kv_dtype int8 \
+        --attention_config.indexer_kv_dtype auto \
         --additional-config '{"enable_dsa_cp": true, "enable_balance_scheduling": true, "enable_fused_mc2": 1, "enable_flashcomm1": true}'  \
         --speculative-config '{"num_speculative_tokens": 3, "method": "deepseek_mtp", "enforce_eager": true}'
     ```
@@ -687,7 +687,7 @@ If you want to deploy a multi-node environment, first verify the data-plane netw
         --async-scheduling \
         --compilation-config '{"cudagraph_mode": "FULL_DECODE_ONLY"}' \
         --kv-cache-dtype int8 \
-        --attention_config.indexer_kv_dtype int8 \
+        --attention_config.indexer_kv_dtype auto \
         --additional-config '{"enable_dsa_cp": true, "enable_balance_scheduling": true, "enable_fused_mc2": 1, "enable_flashcomm1": true}' \
         --speculative-config '{"num_speculative_tokens": 3, "method": "deepseek_mtp", "enforce_eager": true}'
     ```
@@ -752,7 +752,7 @@ If you want to deploy a multi-node environment, first verify the data-plane netw
         --speculative-config '{"num_speculative_tokens": 3, "method": "deepseek_mtp", "enforce_eager": true}' \
         --compilation-config '{"cudagraph_mode": "FULL_DECODE_ONLY"}' \
         --kv-cache-dtype int8 \
-        --attention_config.indexer_kv_dtype int8 \
+        --attention_config.indexer_kv_dtype auto \
         --additional-config '{
             "enable_dsa_cp": true,
             "scheduler_config": {"enable_balance_scheduling": true},
@@ -822,7 +822,7 @@ If you want to deploy a multi-node environment, first verify the data-plane netw
         --speculative-config '{"num_speculative_tokens": 3, "method": "deepseek_mtp", "enforce_eager": true}' \
         --compilation-config '{"cudagraph_mode": "FULL_DECODE_ONLY"}' \
         --kv-cache-dtype int8 \
-        --attention_config.indexer_kv_dtype int8 \
+        --attention_config.indexer_kv_dtype auto \
         --additional-config '{
             "enable_dsa_cp": true,
             "scheduler_config": {"enable_balance_scheduling": true},
@@ -1581,7 +1581,7 @@ layerwise setting and topology.
                 --reasoning-parser glm47 \
                 --enforce-eager \
                 --kv-cache-dtype int8 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --additional-config '{
                     "enable_dsa_cp":true,
                     "enable_fused_mc2": 2,
@@ -1671,7 +1671,7 @@ layerwise setting and topology.
                 --reasoning-parser glm47 \
                 --enforce-eager \
                 --kv-cache-dtype int8 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --additional-config '{
                     "enable_dsa_cp":true,
                     "enable_fused_mc2": 2,
@@ -1758,7 +1758,7 @@ layerwise setting and topology.
                 --tool-call-parser glm47 \
                 --reasoning-parser glm47 \
                 --kv-cache-dtype int8 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --additional-config '{
                     "recompute_scheduler_enable": true,
                     "ascend_compilation_config": {"enable_npugraph_ex": true, "enable_static_kernel": true},
@@ -1844,7 +1844,7 @@ layerwise setting and topology.
                 --tool-call-parser glm47 \
                 --reasoning-parser glm47 \
                 --kv-cache-dtype int8 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --additional-config '{
                     "recompute_scheduler_enable": true,
                     "ascend_compilation_config": {"enable_npugraph_ex": true, "enable_static_kernel": true},
@@ -2126,7 +2126,7 @@ layerwise setting and topology.
       --enforce-eager \
       --safetensors-load-strategy prefetch \
       --kv-cache-dtype int8 \
-      --attention_config.indexer_kv_dtype int8 \
+      --attention_config.indexer_kv_dtype auto \
       --enable-auto-tool-choice \
       --tool-call-parser glm47 \
       --reasoning-parser glm47 \
@@ -2214,7 +2214,7 @@ layerwise setting and topology.
       --quantization ascend \
       --safetensors-load-strategy prefetch \
       --kv-cache-dtype int8 \
-      --attention_config.indexer_kv_dtype int8 \
+      --attention_config.indexer_kv_dtype auto \
       --enable-auto-tool-choice \
       --tool-call-parser glm47 \
       --reasoning-parser glm47 \
@@ -2983,7 +2983,7 @@ Select the tab that matches the deployment hardware and its Prefill topology.
                 --reasoning-parser glm47 \
                 --enforce-eager \
                 --kv-cache-dtype int8 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --additional-config '{
                     "enable_dsa_cp":true,
                     "enable_fused_mc2": 2,
@@ -3097,7 +3097,7 @@ Select the tab that matches the deployment hardware and its Prefill topology.
                 --reasoning-parser glm47 \
                 --enforce-eager \
                 --kv-cache-dtype int8 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --additional-config '{
                     "enable_dsa_cp":true,
                     "enable_fused_mc2": 2,
@@ -3210,7 +3210,7 @@ Select the tab that matches the deployment hardware and its Prefill topology.
                 --tool-call-parser glm47 \
                 --reasoning-parser glm47 \
                 --kv-cache-dtype int8 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --additional-config '{
                     "recompute_scheduler_enable": true,
                     "ascend_compilation_config": {"enable_npugraph_ex": true, "enable_static_kernel": true},
@@ -3322,7 +3322,7 @@ Select the tab that matches the deployment hardware and its Prefill topology.
                 --tool-call-parser glm47 \
                 --reasoning-parser glm47 \
                 --kv-cache-dtype int8 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --additional-config '{
                     "recompute_scheduler_enable": true,
                     "ascend_compilation_config": {"enable_npugraph_ex": true, "enable_static_kernel": true},
@@ -3622,7 +3622,7 @@ Select the tab that matches the deployment hardware and its Prefill topology.
       --reasoning-parser glm47 \
       --enforce-eager \
       --kv-cache-dtype int8 \
-      --attention_config.indexer_kv_dtype int8 \
+      --attention_config.indexer_kv_dtype auto \
       --additional-config '{"enable_dsa_cp":true,"enable_flashcomm1":true,"scheduler_config":{"profiling_chunk_config":{"enabled":true}}}' \
       --speculative-config '{"num_speculative_tokens":1,"method":"deepseek_mtp","enforce_eager":true}' \
       --kv-transfer-config '{
@@ -3743,7 +3743,7 @@ Select the tab that matches the deployment hardware and its Prefill topology.
       --tool-call-parser glm47 \
       --reasoning-parser glm47 \
       --kv-cache-dtype int8 \
-      --attention_config.indexer_kv_dtype int8 \
+      --attention_config.indexer_kv_dtype auto \
       --additional-config '{"recompute_scheduler_enable":true}' \
       --speculative-config '{"num_speculative_tokens":5,"method":"deepseek_mtp","enforce_eager":true}' \
       --compilation-config '{"cudagraph_mode":"FULL_DECODE_ONLY"}' \
@@ -4312,7 +4312,7 @@ Select the tab that matches your deployment hardware.
                 --tool-call-parser glm47 \
                 --reasoning-parser glm47 \
                 --kv-cache-dtype int8 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --pipeline-parallel-size 2 \
                 --distributed-executor-backend mp \
                 --master-addr "$P0_IP" \
@@ -4410,7 +4410,7 @@ Select the tab that matches your deployment hardware.
                 --tool-call-parser glm47 \
                 --reasoning-parser glm47 \
                 --kv-cache-dtype int8 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --pipeline-parallel-size 2 \
                 --distributed-executor-backend mp \
                 --master-addr "$P0_IP" \
@@ -4512,7 +4512,7 @@ Select the tab that matches your deployment hardware.
                 --tool-call-parser glm47 \
                 --reasoning-parser glm47 \
                 --kv-cache-dtype int8 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --enable-chunked-prefill \
                 --no-enable-prefix-caching \
                 --kv-transfer-config '{
@@ -4607,7 +4607,7 @@ Select the tab that matches your deployment hardware.
                 --tool-call-parser glm47 \
                 --reasoning-parser glm47 \
                 --kv-cache-dtype int8 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --enable-chunked-prefill \
                 --no-enable-prefix-caching \
                 --kv-transfer-config '{

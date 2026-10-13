@@ -388,7 +388,7 @@ The quantized model `DeepSeek-V4-Pro-w4a8-mtp` requires at least 2 Atlas 800I A3
       --tool-call-parser deepseek_v4 \
       --enable-auto-tool-choice \
       --reasoning-parser deepseek_v4 \
-      --attention_config.indexer_kv_dtype int8 \
+      --attention_config.indexer_kv_dtype auto \
       --model-loader-extra-config='{"enable_multithread_load": true, "num_threads": 128}' \
       --quantization ascend \
       --speculative-config '{"num_speculative_tokens":5,"method":"dspark","enforce_eager":true}' \
@@ -452,7 +452,7 @@ The quantized model `DeepSeek-V4-Pro-w4a8-mtp` requires at least 2 Atlas 800I A3
       --tool-call-parser deepseek_v4 \
       --enable-auto-tool-choice \
       --reasoning-parser deepseek_v4 \
-      --attention_config.indexer_kv_dtype int8 \
+      --attention_config.indexer_kv_dtype auto \
       --model-loader-extra-config='{"enable_multithread_load": true, "num_threads": 128}' \
       --quantization ascend \
       --speculative-config '{"num_speculative_tokens":5,"method":"dspark","enforce_eager":true}' \
@@ -522,7 +522,7 @@ The quantized model `DeepSeek-V4-Pro-w4a8-mtp` requires at least 2 Atlas 800I A3
       --tool-call-parser deepseek_v4 \
       --enable-auto-tool-choice \
       --reasoning-parser deepseek_v4 \
-      --attention_config.indexer_kv_dtype int8 \
+      --attention_config.indexer_kv_dtype auto \
       --model-loader-extra-config '{
          "enable_multithread_load": true,
          "num_threads": 128
@@ -600,7 +600,7 @@ The quantized model `DeepSeek-V4-Pro-w4a8-mtp` requires at least 2 Atlas 800I A3
       --tool-call-parser deepseek_v4 \
       --enable-auto-tool-choice \
       --reasoning-parser deepseek_v4 \
-      --attention_config.indexer_kv_dtype int8 \
+      --attention_config.indexer_kv_dtype auto \
       --model-loader-extra-config '{
          "enable_multithread_load": true,
          "num_threads": 128
@@ -985,7 +985,7 @@ Select the tab that matches the deployment hardware.
                 --enforce-eager \
                 --quantization ascend \
                 --tokenizer-mode deepseek_v4 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --tool-call-parser deepseek_v4 \
                 --enable-auto-tool-choice \
                 --reasoning-parser deepseek_v4 \
@@ -1061,7 +1061,7 @@ Select the tab that matches the deployment hardware.
             --compilation-config '{"cudagraph_mode":"FULL_DECODE_ONLY"}' \
             --quantization ascend \
             --tokenizer-mode deepseek_v4 \
-            --attention_config.indexer_kv_dtype int8 \
+            --attention_config.indexer_kv_dtype auto \
             --tool-call-parser deepseek_v4 \
             --enable-auto-tool-choice \
             --reasoning-parser deepseek_v4 \
@@ -1114,7 +1114,7 @@ Select the tab that matches the deployment hardware.
 
     Key Parameter Descriptions:
 
-    - `--kv-cache-dtype` keeps the default BF16 KV dtype, and `--attention_config.indexer_kv_dtype int8` sets the index-side KV dtype to INT8. The P and D sides must use the same KV data types so that the transferred KV cache is directly reusable.
+    - `--kv-cache-dtype` keeps the default BF16 KV dtype, and `--attention_config.indexer_kv_dtype auto` sets the index-side KV dtype to INT8. The P and D sides must use the same KV data types so that the transferred KV cache is directly reusable.
     - `--pipeline-parallel-size 2` / `--nnodes 2` / `--node-rank` / `--master-addr` distribute the Prefill engine (`DP1/TP2/PP2`) over 2 nodes with one PP stage per node; the worker node (`--node-rank 1`) runs headless.
     - `--prefill-context-parallel-size 8` on Prefill; Decode passes `--pcp-size 1` to the launcher, keeping PCP disabled on the Decode pool. Keep `kv_connector_extra_config.prefill.pcp_size` and `decode.pcp_size` consistent with the PCP size of the corresponding pool.
     - `--kv-transfer-config` uses `MooncakeConnectorV2` for KV transfer; it is required because pipeline parallelism is enabled.
@@ -1183,7 +1183,7 @@ Select the tab that matches the deployment hardware.
                 --tool-call-parser deepseek_v4 \
                 --enable-auto-tool-choice \
                 --reasoning-parser deepseek_v4 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --model-loader-extra-config='{"enable_multithread_load": true, "num_threads": 128}' \
                 --trust-remote-code \
                 --quantization ascend \
@@ -1258,7 +1258,7 @@ Select the tab that matches the deployment hardware.
                 --tool-call-parser deepseek_v4 \
                 --enable-auto-tool-choice \
                 --reasoning-parser deepseek_v4 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --model-loader-extra-config='{"enable_multithread_load": true, "num_threads": 128}' \
                 --trust-remote-code \
                 --quantization ascend \
@@ -1346,7 +1346,7 @@ Select the tab that matches the deployment hardware.
 
     Key Parameter Descriptions:
 
-    - `--kv-cache-dtype` keeps the default BF16 KV dtype, and `--attention_config.indexer_kv_dtype int8` sets the index-side KV dtype to INT8. The P and D sides must use the same KV data types so that the transferred KV cache is directly reusable.
+    - `--kv-cache-dtype` keeps the default BF16 KV dtype, and `--attention_config.indexer_kv_dtype auto` sets the index-side KV dtype to INT8. The P and D sides must use the same KV data types so that the transferred KV cache is directly reusable.
     - `--kv-transfer-config` uses `MooncakeHybridConnector` for KV transfer because pipeline parallelism is not enabled.
     - `--additional-config`: `enable_flashcomm1: true` and `enable_fused_mc2: 1` enable the Fused MC2 fusion operator with FlashComm; the Prefill nodes additionally set `enable_shared_expert_dp: true`.
     - No `--prefill-context-parallel-size`: PCP is not used because each DP rank already runs full `TP8`.
@@ -2035,7 +2035,7 @@ Select the tab that matches the deployment hardware.
             --enforce-eager \
             --quantization ascend \
             --tokenizer-mode deepseek_v4 \
-            --attention_config.indexer_kv_dtype int8 \
+            --attention_config.indexer_kv_dtype auto \
             --tool-call-parser deepseek_v4 \
             --enable-auto-tool-choice \
             --reasoning-parser deepseek_v4 \
@@ -2168,7 +2168,7 @@ Select the tab that matches the deployment hardware.
         --compilation-config '{"cudagraph_mode":"FULL_DECODE_ONLY"}' \
         --quantization ascend \
         --tokenizer-mode deepseek_v4 \
-        --attention_config.indexer_kv_dtype int8 \
+        --attention_config.indexer_kv_dtype auto \
         --tool-call-parser deepseek_v4 \
         --enable-auto-tool-choice \
         --reasoning-parser deepseek_v4 \

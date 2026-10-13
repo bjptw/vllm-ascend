@@ -1038,7 +1038,7 @@ address, DP RPC port, and TP size to each role script as `$1` through `$7`.
       --trust-remote-code \
       --quantization ascend \
       --kv-cache-dtype int8 \
-      --attention_config.indexer_kv_dtype int8 \
+      --attention_config.indexer_kv_dtype auto \
       --limit-mm-per-prompt '{"image":1,"video":0}' \
       --gpu-memory-utilization 0.9 \
       --async-scheduling \
@@ -1173,7 +1173,7 @@ address, DP RPC port, and TP size to each role script as `$1` through `$7`.
       --trust-remote-code \
       --quantization ascend \
       --kv-cache-dtype int8 \
-      --attention_config.indexer_kv_dtype int8 \
+      --attention_config.indexer_kv_dtype auto \
       --gpu-memory-utilization 0.85 \
       --skip-mm-profiling \
       --limit-mm-per-prompt '{"image":1,"video":0}' \

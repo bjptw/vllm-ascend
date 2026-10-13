@@ -260,7 +260,7 @@ Single-node deployment completes both Prefill and Decode within the same node. T
         --quantization ascend \
         --port 8000 \
         --block-size 32 \
-        --attention_config.indexer_kv_dtype int8 \
+        --attention_config.indexer_kv_dtype auto \
         --speculative-config '{"num_speculative_tokens": 1,"method": "mtp","enforce_eager": true}' \
         --compilation-config '{"cudagraph_mode": "FULL_DECODE_ONLY"}' \
         --additional-config '
@@ -304,7 +304,7 @@ Single-node deployment completes both Prefill and Decode within the same node. T
         --quantization ascend \
         --port 8000 \
         --block-size 32 \
-        --attention_config.indexer_kv_dtype int8 \
+        --attention_config.indexer_kv_dtype auto \
         --speculative-config '{"method":"dspark","num_speculative_tokens":7,"enforce_eager":true}' \
         --compilation-config '{"cudagraph_mode": "FULL_DECODE_ONLY"}' \
         --additional-config '{
@@ -349,7 +349,7 @@ Single-node deployment completes both Prefill and Decode within the same node. T
         --quantization ascend \
         --port 8000 \
         --block-size 128 \
-        --attention_config.indexer_kv_dtype int8 \
+        --attention_config.indexer_kv_dtype auto \
         --speculative-config '{"num_speculative_tokens": 1,"method": "mtp","enforce_eager": true}' \
         --compilation-config '{"cudagraph_mode": "FULL_DECODE_ONLY"}' \
         --additional-config '
@@ -391,7 +391,7 @@ Single-node deployment completes both Prefill and Decode within the same node. T
         --quantization ascend \
         --port 8000 \
         --block-size 128 \
-        --attention_config.indexer_kv_dtype int8 \
+        --attention_config.indexer_kv_dtype auto \
         --speculative-config '{"method": "dspark", "num_speculative_tokens": 7, "enforce_eager": true}'  \
         --compilation-config '{"cudagraph_mode": "FULL_DECODE_ONLY"}'
     ```
@@ -947,7 +947,7 @@ The following sections describe multi-node PD separation deployment on Atlas 800
                 --speculative-config '{"num_speculative_tokens": 1,"method": "mtp","enforce_eager": true}' \
                 --trust-remote-code \
                 --block-size 32 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --tokenizer-mode deepseek_v4 \
                 --tool-call-parser deepseek_v4 \
                 --enable-auto-tool-choice \
@@ -1010,7 +1010,7 @@ The following sections describe multi-node PD separation deployment on Atlas 800
                 --max-num-batched-tokens 120 \
                 --max-num-seqs 60 \
                 --block-size 32 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --no-disable-hybrid-kv-cache-manager \
                 --no-enable-prefix-caching \
                 --trust-remote-code \
@@ -1248,7 +1248,7 @@ The following sections describe multi-node PD separation deployment on Atlas 800
                 --speculative-config '{"num_speculative_tokens": 5,"method": "dspark","enforce_eager": true}' \
                 --trust-remote-code \
                 --block-size 32 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --tokenizer-mode deepseek_v4 \
                 --tool-call-parser deepseek_v4 \
                 --enable-auto-tool-choice \
@@ -1312,7 +1312,7 @@ The following sections describe multi-node PD separation deployment on Atlas 800
                 --max-num-seqs 60 \
                 --async-scheduling \
                 --block-size 32 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --no-disable-hybrid-kv-cache-manager \
                 --no-enable-prefix-caching \
                 --trust-remote-code \
@@ -1504,7 +1504,7 @@ The following sections describe multi-node PD separation deployment on Atlas 800
                 --tool-call-parser deepseek_v4 \
                 --enable-auto-tool-choice \
                 --reasoning-parser deepseek_v4 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --additional-config '{"enable_cpu_binding": true, "enable_shared_expert_dp": true}' \
                 --speculative-config '{"num_speculative_tokens": 1, "method": "mtp","enforce_eager": true}' \
                 --kv-transfer-config '{"kv_connector": "MooncakeHybridConnector",
@@ -1578,7 +1578,7 @@ The following sections describe multi-node PD separation deployment on Atlas 800
                 --tool-call-parser deepseek_v4 \
                 --enable-auto-tool-choice \
                 --reasoning-parser deepseek_v4 \
-                --attention_config.indexer_kv_dtype int8 \
+                --attention_config.indexer_kv_dtype auto \
                 --speculative-config '{"num_speculative_tokens": 1, "method": "mtp","enforce_eager": true}' \
                 --compilation-config '{"cudagraph_mode": "FULL_DECODE_ONLY"}' \
                 --kv-transfer-config '{"kv_connector": "MooncakeHybridConnector",
@@ -1756,7 +1756,7 @@ The following sections describe multi-node PD separation deployment on Atlas 800
       --enable-chunked-prefill --no-disable-hybrid-kv-cache-manager \
       --enable-prefix-caching --enforce-eager \
       --quantization ascend --tokenizer-mode deepseek_v4 \
-      --attention_config.indexer_kv_dtype int8 \
+      --attention_config.indexer_kv_dtype auto \
       --tool-call-parser deepseek_v4 --enable-auto-tool-choice \
       --reasoning-parser deepseek_v4 --trust-remote-code --seed 1024 \
       --model-loader-extra-config '{"enable_multithread_load":true,"num_threads":128}' \
@@ -1814,7 +1814,7 @@ The following sections describe multi-node PD separation deployment on Atlas 800
         --tensor-parallel-size 1 --enable-expert-parallel --seed 1024 \
         --max-model-len 508576 --max-num-batched-tokens 720 \
         --max-num-seqs 128 --async-scheduling --block-size 32 \
-        --served-model-name dsv4 --attention_config.indexer_kv_dtype int8 \
+        --served-model-name dsv4 --attention_config.indexer_kv_dtype auto \
         --no-enable-prefix-caching --no-disable-hybrid-kv-cache-manager \
         --model-loader-extra-config '{"enable_multithread_load":true,"num_threads":128}' \
         --trust-remote-code --tokenizer-mode deepseek_v4 \
@@ -2366,7 +2366,7 @@ This section provides PD separation deployment examples with a KV Cache Pool for
             --speculative-config '{"num_speculative_tokens": 5,"method": "dspark","enforce_eager": true}' \
             --trust-remote-code \
             --block-size 32 \
-            --attention_config.indexer_kv_dtype int8 \
+            --attention_config.indexer_kv_dtype auto \
             --tokenizer-mode deepseek_v4 \
             --tool-call-parser deepseek_v4 \
             --enable-auto-tool-choice \
@@ -2468,7 +2468,7 @@ This section provides PD separation deployment examples with a KV Cache Pool for
             --max-num-seqs 60 \
             --async-scheduling \
             --block-size 32 \
-            --attention_config.indexer_kv_dtype int8 \
+            --attention_config.indexer_kv_dtype auto \
             --no-disable-hybrid-kv-cache-manager \
             --no-enable-prefix-caching \
             --trust-remote-code \
@@ -2774,7 +2774,7 @@ This section provides PD separation deployment examples with a KV Cache Pool for
           --enable-chunked-prefill --no-disable-hybrid-kv-cache-manager \
           --enable-prefix-caching --enforce-eager \
           --quantization ascend --tokenizer-mode deepseek_v4 \
-          --attention_config.indexer_kv_dtype int8 \
+          --attention_config.indexer_kv_dtype auto \
           --tool-call-parser deepseek_v4 --enable-auto-tool-choice \
           --reasoning-parser deepseek_v4 --trust-remote-code --seed 1024 \
           --model-loader-extra-config '{"enable_multithread_load":true,"num_threads":128}' \
@@ -2861,7 +2861,7 @@ This section provides PD separation deployment examples with a KV Cache Pool for
           --enable-chunked-prefill --no-disable-hybrid-kv-cache-manager \
           --enable-prefix-caching --enforce-eager \
           --quantization ascend --tokenizer-mode deepseek_v4 \
-          --attention_config.indexer_kv_dtype int8 \
+          --attention_config.indexer_kv_dtype auto \
           --tool-call-parser deepseek_v4 --enable-auto-tool-choice \
           --reasoning-parser deepseek_v4 --trust-remote-code --seed 1024 \
           --model-loader-extra-config '{"enable_multithread_load":true,"num_threads":128}' \
@@ -2951,7 +2951,7 @@ This section provides PD separation deployment examples with a KV Cache Pool for
             --tensor-parallel-size 1 --enable-expert-parallel --seed 1024 \
             --max-model-len 508576 --max-num-batched-tokens 720 \
             --max-num-seqs 128 --async-scheduling --block-size 32 \
-            --served-model-name dsv4 --attention_config.indexer_kv_dtype int8 \
+            --served-model-name dsv4 --attention_config.indexer_kv_dtype auto \
             --enable-prefix-caching --no-disable-hybrid-kv-cache-manager \
             --model-loader-extra-config '{"enable_multithread_load":true,"num_threads":128}' \
             --trust-remote-code --tokenizer-mode deepseek_v4 \
@@ -3043,7 +3043,7 @@ This section provides PD separation deployment examples with a KV Cache Pool for
             --tensor-parallel-size 1 --enable-expert-parallel --seed 1024 \
             --max-model-len 508576 --max-num-batched-tokens 720 \
             --max-num-seqs 128 --async-scheduling --block-size 32 \
-            --served-model-name dsv4 --attention_config.indexer_kv_dtype int8 \
+            --served-model-name dsv4 --attention_config.indexer_kv_dtype auto \
             --enable-prefix-caching --no-disable-hybrid-kv-cache-manager \
             --model-loader-extra-config '{"enable_multithread_load":true,"num_threads":128}' \
             --trust-remote-code --tokenizer-mode deepseek_v4 \
